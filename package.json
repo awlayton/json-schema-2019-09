@@ -1,7 +1,14 @@
 {
-  "name": "json-schema-2019-09",
-  "version": "1.0.0",
+  "name": "jsonschema8",
+  "version": "1.0.1",
   "description": "TypeScript type for JSON Schema 2019-09",
+  "keywords": [
+    "JSON",
+    "schema",
+    "jsonschema",
+    "json-schema",
+    "typescript"
+  ],
   "types": "./index.d.ts",
   "repository": {
     "type": "git",
