@@ -1,0 +1,19 @@
+{
+  "name": "json-schema-2019-09",
+  "version": "1.0.0",
+  "description": "TypeScript type for JSON Schema 2019-09",
+  "types": "./index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awlayton/json-schema-2019-09.git"
+  },
+  "author": "Alex Layton <alex@layton.in>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/awlayton/json-schema-2019-09/issues"
+  },
+  "homepage": "https://github.com/awlayton/json-schema-2019-09#readme",
+  "dependencies": {
+    "typescript": "^3.7.5"
+  }
+}

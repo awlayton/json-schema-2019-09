@@ -1,5 +1,5 @@
 /**
- * Type definitions for JSON Schema 7.0
+ * Type definitions for JSON Schema 2019-09
  * Definitions by: Boris Cherny <https://github.com/bcherny>
  *                 Cyrille Tuzi <https://github.com/cyrilletuzi>
  *                 Lucian Buzzo <https://github.com/lucianbuzzo>
@@ -14,8 +14,8 @@
  */
 
 /**
- * JSON Schema 7
- * Draft 07
+ * JSON Schema 2019-09
+ * Draft 08
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02}
  */
 
@@ -23,7 +23,7 @@
  * Primitive type
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.1.1}
  */
-export type JSONSchema7TypeName =
+export type JSONSchema8TypeName =
   | 'string'
   | 'number'
   | 'integer'
@@ -31,8 +31,8 @@ export type JSONSchema7TypeName =
   | 'object'
   | 'array'
   | 'null'
-export type JSONSchema7Type =
-  | JSONSchema7Type[]
+export type JSONSchema8Type =
+  | JSONSchema8Type[]
   | boolean
   | number
   | null
@@ -43,34 +43,33 @@ export type JSONSchema7Type =
  * Meta schema
  *
  * Recommended values:
- * - 'http://json-schema.org/schema#'
- * - 'http://json-schema.org/hyper-schema#'
- * - 'http://json-schema.org/draft-07/schema#'
- * - 'http://json-schema.org/draft-07/hyper-schema#'
- * - 'http://json-schema.org/draft/2019-09/schema'
+ * - 'https://json-schema.org/schema#'
+ * - 'https://json-schema.org/hyper-schema#'
+ * - 'https://json-schema.org/draft/2019-09/schema#'
+ * - 'https://json-schema.org/draft/2019-09/hyper-schema#'
  *
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-5}
  */
-export type JSONSchema7Version = string
+export type JSONSchema8Version = string
 
 /**
- * JSON Schema v7
+ * JSON Schema 2019-09
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02}
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02}
  */
-export type JSONSchema7Definition = JSONSchema7 | boolean
-export type JSONSchema7 =
-  | JSONSchema7BaseSchema
-  | JSONSchema7NullSchema
-  | JSONSchema7NumericSchema
-  | JSONSchema7StringSchema
-  | JSONSchema7ArraySchema
-  | JSONSchema7ObjectSchema
-  | JSONSchema7EnumSchema
-  | JSONSchema7ConstSchema
-  | JSONSchema7TypeArraySchema
+export type JSONSchema8Definition = JSONSchema8 | boolean
+export type JSONSchema8 =
+  | JSONSchema8BaseSchema
+  | JSONSchema8NullSchema
+  | JSONSchema8NumericSchema
+  | JSONSchema8StringSchema
+  | JSONSchema8ArraySchema
+  | JSONSchema8ObjectSchema
+  | JSONSchema8EnumSchema
+  | JSONSchema8ConstSchema
+  | JSONSchema8TypeArraySchema
 
-export interface JSONSchema7BaseSchema {
+export interface JSONSchema8BaseSchema {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-8.2.2}
    */
@@ -98,7 +97,7 @@ export interface JSONSchema7BaseSchema {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-8.1.1}
    */
-  $schema?: JSONSchema7Version
+  $schema?: JSONSchema8Version
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-8.1.2}
    */
@@ -110,14 +109,14 @@ export interface JSONSchema7BaseSchema {
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-8.2.5}
    */
   $defs?: {
-    [key: string]: JSONSchema7Definition
+    [key: string]: JSONSchema8Definition
   }
   /**
    * @deprecated Use @see $defs
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#appendix-A}
    */
   definitions?: {
-    [key: string]: JSONSchema7Definition
+    [key: string]: JSONSchema8Definition
   }
 
   /**
@@ -134,15 +133,15 @@ export interface JSONSchema7BaseSchema {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.2.1}
    */
-  if?: JSONSchema7Definition
+  if?: JSONSchema8Definition
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.2.2}
    */
-  then?: JSONSchema7Definition
+  then?: JSONSchema8Definition
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.2.3}
    */
-  else?: JSONSchema7Definition
+  else?: JSONSchema8Definition
 
   /**
    * Combining subschemas with boolean logic
@@ -152,19 +151,19 @@ export interface JSONSchema7BaseSchema {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.1.1}
    */
-  allOf?: JSONSchema7Definition[]
+  allOf?: JSONSchema8Definition[]
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.1.2}
    */
-  anyOf?: JSONSchema7Definition[]
+  anyOf?: JSONSchema8Definition[]
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.1.3}
    */
-  oneOf?: JSONSchema7Definition[]
+  oneOf?: JSONSchema8Definition[]
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.1.4}
    */
-  not?: JSONSchema7Definition
+  not?: JSONSchema8Definition
 
   /**
    * The standard formats all only apply to type: 'string'
@@ -190,7 +189,7 @@ export interface JSONSchema7BaseSchema {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.2}
    */
-  default?: JSONSchema7Type
+  default?: JSONSchema8Type
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.3}
    */
@@ -206,48 +205,48 @@ export interface JSONSchema7BaseSchema {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.5}
    */
-  examples?: JSONSchema7Type[]
+  examples?: JSONSchema8Type[]
 }
 
 /**
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.1.1]
  */
-export interface JSONSchema7TypeSchema extends JSONSchema7BaseSchema {
-  type: JSONSchema7TypeName
+export interface JSONSchema8TypeSchema extends JSONSchema8BaseSchema {
+  type: JSONSchema8TypeName
 }
 /**
  * @todo How to have TS only intersect the included types?
  */
-export type JSONSchema7TypeArraySchema = { type: JSONSchema7TypeName[] } & Omit<
-  JSONSchema7NullSchema,
+export type JSONSchema8TypeArraySchema = { type: JSONSchema8TypeName[] } & Omit<
+  JSONSchema8NullSchema,
   'type'
 > &
-  Omit<JSONSchema7NumericSchema, 'type'> &
-  Omit<JSONSchema7StringSchema, 'type'> &
-  Omit<JSONSchema7ArraySchema, 'type'> &
-  Omit<JSONSchema7ObjectSchema, 'type'>
-export interface JSONSchema7NullSchema extends JSONSchema7TypeSchema {
+  Omit<JSONSchema8NumericSchema, 'type'> &
+  Omit<JSONSchema8StringSchema, 'type'> &
+  Omit<JSONSchema8ArraySchema, 'type'> &
+  Omit<JSONSchema8ObjectSchema, 'type'>
+export interface JSONSchema8NullSchema extends JSONSchema8TypeSchema {
   type: 'null'
 }
 
 /**
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.1.2}
  */
-export interface JSONSchema7EnumSchema extends JSONSchema7BaseSchema {
-  enum: JSONSchema7Type[]
+export interface JSONSchema8EnumSchema extends JSONSchema8BaseSchema {
+  enum: JSONSchema8Type[]
 }
 
 /**
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.1.3}
  */
-export interface JSONSchema7ConstSchema extends JSONSchema7BaseSchema {
-  const: JSONSchema7Type
+export interface JSONSchema8ConstSchema extends JSONSchema8BaseSchema {
+  const: JSONSchema8Type
 }
 
 /**
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2}
  */
-export interface JSONSchema7NumericSchema extends JSONSchema7TypeSchema {
+export interface JSONSchema8NumericSchema extends JSONSchema8TypeSchema {
   type: 'number' | 'integer'
 
   /**
@@ -275,7 +274,7 @@ export interface JSONSchema7NumericSchema extends JSONSchema7TypeSchema {
 /**
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.3}
  */
-export interface JSONSchema7StringSchema extends JSONSchema7TypeSchema {
+export interface JSONSchema8StringSchema extends JSONSchema8TypeSchema {
   type: 'string'
 
   /**
@@ -306,13 +305,13 @@ export interface JSONSchema7StringSchema extends JSONSchema7TypeSchema {
   /**
    * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-8.5}
    */
-  contentSchema?: JSONSchema7
+  contentSchema?: JSONSchema8
 }
 
 /**
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4}
  */
-export interface JSONSchema7ArraySchema extends JSONSchema7TypeSchema {
+export interface JSONSchema8ArraySchema extends JSONSchema8TypeSchema {
   type: 'array'
 
   /**
@@ -340,25 +339,25 @@ export interface JSONSchema7ArraySchema extends JSONSchema7TypeSchema {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.1.1}
    */
-  items?: JSONSchema7Definition | JSONSchema7Definition[]
+  items?: JSONSchema8Definition | JSONSchema8Definition[]
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.1.2}
    */
-  additionalItems?: JSONSchema7Definition
+  additionalItems?: JSONSchema8Definition
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.1.3}
    */
-  unevaluatedItems?: JSONSchema7Definition
+  unevaluatedItems?: JSONSchema8Definition
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.1.4}
    */
-  contains?: JSONSchema7
+  contains?: JSONSchema8
 }
 
 /**
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5}
  */
-export interface JSONSchema7ObjectSchema extends JSONSchema7TypeSchema {
+export interface JSONSchema8ObjectSchema extends JSONSchema8TypeSchema {
   type: 'object'
 
   /**
@@ -389,32 +388,32 @@ export interface JSONSchema7ObjectSchema extends JSONSchema7TypeSchema {
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2.1}
    */
   properties?: {
-    [key: string]: JSONSchema7Definition
+    [key: string]: JSONSchema8Definition
   }
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2.2}
    */
   patternProperties?: {
-    [key: string]: JSONSchema7Definition
+    [key: string]: JSONSchema8Definition
   }
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2.3}
    */
-  additionalProperties?: JSONSchema7Definition
+  additionalProperties?: JSONSchema8Definition
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2.4}
    */
-  unevaluatedProperties?: JSONSchema7Definition
+  unevaluatedProperties?: JSONSchema8Definition
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2.5}
    */
-  propertyNames?: JSONSchema7Definition
+  propertyNames?: JSONSchema8Definition
 
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.2.4}
    */
   dependentSchemas?: {
-    [key: string]: JSONSchema7Definition
+    [key: string]: JSONSchema8Definition
   }
 
   /**
@@ -422,6 +421,6 @@ export interface JSONSchema7ObjectSchema extends JSONSchema7TypeSchema {
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#appendix-A}
    */
   dependencies?: {
-    [key: string]: JSONSchema7Definition | string[]
+    [key: string]: JSONSchema8Definition | string[]
   }
 }
