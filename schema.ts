@@ -1,5 +1,5 @@
 /**
- * Type definitions for json-schema 7.0
+ * Type definitions for JSON Schema 7.0
  * Definitions by: Boris Cherny <https://github.com/bcherny>
  *                 Cyrille Tuzi <https://github.com/cyrilletuzi>
  *                 Lucian Buzzo <https://github.com/lucianbuzzo>
@@ -127,38 +127,42 @@ export interface JSONSchema7BaseSchema {
   $comment?: string
 
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.6
+   * Combining subschemas conditionally
+   *
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.2}
    */
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.6.1
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.2.1}
    */
   if?: JSONSchema7Definition
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.6.2
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.2.2}
    */
   then?: JSONSchema7Definition
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.6.3
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.2.3}
    */
   else?: JSONSchema7Definition
 
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.7
+   * Combining subschemas with boolean logic
+   *
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.1}
    */
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.7.1
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.1.1}
    */
   allOf?: JSONSchema7Definition[]
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.7.2
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.1.2}
    */
   anyOf?: JSONSchema7Definition[]
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.7.3
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.1.3}
    */
   oneOf?: JSONSchema7Definition[]
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.7.4
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.1.4}
    */
   not?: JSONSchema7Definition
 
@@ -166,23 +170,47 @@ export interface JSONSchema7BaseSchema {
    * The standard formats all only apply to type: 'string'
    * but the spec allows it on any type so I put it here.
    *
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7}
    */
   format?: string
 
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-10
+   * Meta-data annotation of schemas
+   *
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9}
+   */
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.1}
    */
   title?: string
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.1}
+   */
   description?: string
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.2}
+   */
   default?: JSONSchema7Type
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.3}
+   */
+  deprecated?: boolean
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.4}
+   */
   readOnly?: boolean
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.4}
+   */
   writeOnly?: boolean
-  examples?: JSONSchema7Type
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.5}
+   */
+  examples?: JSONSchema7Type[]
 }
 
 /**
- * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.1.1
+ * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.1.1]
  */
 export interface JSONSchema7TypeSchema extends JSONSchema7BaseSchema {
   type: JSONSchema7TypeName
@@ -198,174 +226,202 @@ export type JSONSchema7TypeArraySchema = { type: JSONSchema7TypeName[] } & Omit<
   Omit<JSONSchema7StringSchema, 'type'> &
   Omit<JSONSchema7ArraySchema, 'type'> &
   Omit<JSONSchema7ObjectSchema, 'type'>
-
 export interface JSONSchema7NullSchema extends JSONSchema7TypeSchema {
   type: 'null'
 }
 
 /**
- * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.1.2
+ * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.1.2}
  */
 export interface JSONSchema7EnumSchema extends JSONSchema7BaseSchema {
   enum: JSONSchema7Type[]
 }
 
 /**
- * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.1.3
+ * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.1.3}
  */
 export interface JSONSchema7ConstSchema extends JSONSchema7BaseSchema {
   const: JSONSchema7Type
 }
 
 /**
- * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2
+ * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2}
  */
 export interface JSONSchema7NumericSchema extends JSONSchema7TypeSchema {
   type: 'number' | 'integer'
 
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2.1
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2.1}
    */
   multipleOf?: number
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2.2
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2.2}
    */
   maximum?: number
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2.3
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2.3}
    */
   exclusiveMaximum?: number
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2.4
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2.4}
    */
   minimum?: number
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2.5
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.2.5}
    */
   exclusiveMinimum?: number
 }
 
 /**
- * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.3
+ * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.3}
  */
 export interface JSONSchema7StringSchema extends JSONSchema7TypeSchema {
   type: 'string'
 
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.3.1
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.3.1}
    */
   maxLength?: number
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.3.2
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.3.2}
    */
   minLength?: number
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.3.3
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.3.3}
    */
   pattern?: string
 
   /**
    * @todo Should there be a separate interface for string-encoded schema?
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-8
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-8}
    */
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-8.3
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-8.3}
    */
   contentEncoding?: string
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-8.4
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-8.4}
    */
   contentMediaType?: string
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-8.5
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-8.5}
    */
   contentSchema?: JSONSchema7
 }
 
 /**
- * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4
+ * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4}
  */
 export interface JSONSchema7ArraySchema extends JSONSchema7TypeSchema {
   type: 'array'
 
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.4.1
-   */
-  items?: JSONSchema7Definition | JSONSchema7Definition[]
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.4.2
-   */
-  additionalItems?: JSONSchema7Definition
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4.1
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4.1}
    */
   maxItems?: number
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4.2
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4.2}
    */
   minItems?: number
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4.3
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4.3}
    */
   uniqueItems?: boolean
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.4.6
-   */
-  contains?: JSONSchema7
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4.4
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4.4}
    */
   maxContains?: number
+
+  /**
+   * Keywords for applying subschemas to arrays
+   *
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.1}
+   */
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.1.1}
+   */
+  items?: JSONSchema7Definition | JSONSchema7Definition[]
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.1.2}
+   */
+  additionalItems?: JSONSchema7Definition
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.1.3}
+   */
+  unevaluatedItems?: JSONSchema7Definition
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.1.4}
+   */
+  contains?: JSONSchema7
 }
 
 /**
- * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5
+ * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5}
  */
 export interface JSONSchema7ObjectSchema extends JSONSchema7TypeSchema {
   type: 'object'
 
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5.1
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5.1}
    */
   maxProperties?: number
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5.2
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5.2}
    */
   minProperties?: number
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5.3
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5.3}
    */
   required?: string[]
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5.4
+   * @see {@link  https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.5.4}
    */
   dependentRequired?: {
     [key: string]: string[]
   }
+
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.5.4
+   * Keywords for applying subschemas to objects
+   *
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2}
+   */
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2.1}
    */
   properties?: {
     [key: string]: JSONSchema7Definition
   }
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.5.5
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2.2}
    */
   patternProperties?: {
     [key: string]: JSONSchema7Definition
   }
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.5.6
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2.3}
    */
   additionalProperties?: JSONSchema7Definition
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.5.7
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2.4}
+   */
+  unevaluatedProperties?: JSONSchema7Definition
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.3.2.5}
+   */
+  propertyNames?: JSONSchema7Definition
+
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-9.2.2.4}
+   */
+  dependentSchemas?: {
+    [key: string]: JSONSchema7Definition
+  }
+
+  /**
+   * @deprecated Use @see dependentSchemas or @see dependentRequired
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#appendix-A}
    */
   dependencies?: {
     [key: string]: JSONSchema7Definition | string[]
   }
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.5.8
-   */
-  propertyNames?: JSONSchema7Definition
 }
