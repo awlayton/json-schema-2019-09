@@ -76,6 +76,11 @@ export interface JSONSchema8BaseSchema {
   $id?: string
 
   /**
+   * @see {@link https://json-schema.org/draft/2019-09/json-schema-core.html#anchor}
+   */
+  $anchor?: string
+
+  /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-8.2.4}
    */
   /**
@@ -89,7 +94,7 @@ export interface JSONSchema8BaseSchema {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-8.2.4.2.2}
    */
-  $recursiveAnhor?: boolean
+  $recursiveAnchor?: boolean
 
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-8.1}
