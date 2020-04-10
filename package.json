@@ -1,6 +1,6 @@
 {
   "name": "jsonschema8",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "TypeScript type for JSON Schema 2019-09",
   "keywords": [
     "JSON",
