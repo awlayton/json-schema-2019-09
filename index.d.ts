@@ -53,13 +53,19 @@ export type JSONSchema8Type =
 export type JSONSchema8Version = string
 
 /**
+ * Allow only standard defined values,
+ * or allowed any values allowed (i.e., custom values where allowed by spec)
+ */
+export type SchemaStrictness = 'defined' | 'allowed'
+
+/**
  * JSON Schema 2019-09
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02}
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02}
  */
 export type JSONSchema8Definition = JSONSchema8 | boolean
-export type JSONSchema8 =
-  | JSONSchema8BaseSchema
+export type JSONSchema8<S extends SchemaStrictness = 'allowed'> =
+  | JSONSchema8BaseSchema<S>
   | JSONSchema8NullSchema
   | JSONSchema8NumericSchema
   | JSONSchema8StringSchema
@@ -69,7 +75,55 @@ export type JSONSchema8 =
   | JSONSchema8ConstSchema
   | JSONSchema8TypeArraySchema
 
-export interface JSONSchema8BaseSchema {
+/**
+ * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7.3}
+ */
+export type DefinedFormat =
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7.3.1}
+   */
+  | 'date-time'
+  | 'date'
+  | 'time'
+  | 'duration'
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7.3.2}
+   */
+  | 'email'
+  | 'idn-email'
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7.3.3}
+   */
+  | 'hostname'
+  | 'idn-hostname'
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7.3.4}
+   */
+  | 'ipv4'
+  | 'ipv6'
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7.3.5}
+   */
+  | 'uri'
+  | 'uri-reference'
+  | 'iri'
+  | 'iri-reference'
+  | 'uuid'
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7.3.6}
+   */
+  | 'uri-template'
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7.3.7}
+   */
+  | 'json-pointer'
+  | 'relative-json-pointer'
+  /**
+   * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7.3.8}
+   */
+  | 'regex'
+
+export interface JSONSchema8BaseSchema<S extends SchemaStrictness = 'allowed'> {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-8.2.2}
    */
@@ -176,7 +230,7 @@ export interface JSONSchema8BaseSchema {
    *
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-7}
    */
-  format?: string
+  format?: S extends 'defined' ? DefinedFormat : string
 
   /**
    * Meta-data annotation of schemas
