@@ -126,7 +126,10 @@ export type DefinedFormat =
    */
   | 'regex'
 
-export interface JSONSchema8BaseSchema<S extends SchemaStrictness = 'allowed'> {
+export interface JSONSchema8BaseSchema<
+  S extends SchemaStrictness = 'allowed',
+  T extends JSONSchema8Type = JSONSchema8Type
+> {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-02#section-8.2.2}
    */
@@ -251,7 +254,7 @@ export interface JSONSchema8BaseSchema<S extends SchemaStrictness = 'allowed'> {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.2}
    */
-  default?: JSONSchema8Type
+  default?: T
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.3}
    */
@@ -267,14 +270,16 @@ export interface JSONSchema8BaseSchema<S extends SchemaStrictness = 'allowed'> {
   /**
    * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-9.5}
    */
-  examples?: JSONSchema8Type[]
+  examples?: T[]
 }
 
 /**
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.1.1]
  */
-export interface JSONSchema8TypeSchema<S extends SchemaStrictness = 'allowed'>
-  extends JSONSchema8BaseSchema<S> {
+export interface JSONSchema8TypeSchema<
+  S extends SchemaStrictness = 'allowed',
+  T extends JSONSchema8Type = JSONSchema8Type
+> extends JSONSchema8BaseSchema<S, T> {
   type: JSONSchema8TypeName
 }
 /**
@@ -315,7 +320,7 @@ export interface JSONSchema8ConstSchema<S extends SchemaStrictness = 'allowed'>
  */
 export interface JSONSchema8NumericSchema<
   S extends SchemaStrictness = 'allowed'
-> extends JSONSchema8TypeSchema<S> {
+> extends JSONSchema8TypeSchema<S, number> {
   type: 'number' | 'integer'
 
   /**
@@ -364,7 +369,7 @@ type DefinedEncoding =
  */
 export interface JSONSchema8StringSchema<
   S extends SchemaStrictness = 'allowed'
-> extends JSONSchema8TypeSchema<S> {
+> extends JSONSchema8TypeSchema<S, string> {
   type: 'string'
 
   /**
@@ -402,7 +407,7 @@ export interface JSONSchema8StringSchema<
  * @see {@link https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#section-6.4}
  */
 export interface JSONSchema8ArraySchema<S extends SchemaStrictness = 'allowed'>
-  extends JSONSchema8TypeSchema<S> {
+  extends JSONSchema8TypeSchema<S, JSONSchema8Type[]> {
   type: 'array'
 
   /**
@@ -450,7 +455,7 @@ export interface JSONSchema8ArraySchema<S extends SchemaStrictness = 'allowed'>
  */
 export interface JSONSchema8ObjectSchema<
   S extends SchemaStrictness = 'allowed'
-> extends JSONSchema8TypeSchema<S> {
+> extends JSONSchema8TypeSchema<S, object> {
   type: 'object'
 
   /**
