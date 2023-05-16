@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "arcanis.vscode-zipfs",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "gamunu.vscode-yarn",
+    "editorconfig.editorconfig",
+    "loiane.ts-extension-pack"
+  ]
+}
